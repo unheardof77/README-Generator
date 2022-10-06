@@ -1,9 +1,7 @@
-// TODO: Include packages needed for this application
-//const { write } = require("fs");
+const generateMarkdown = require(`./utils/generateMarkdown.js`);
 const inquirer = require(`inquirer`);
 const { writeFile } = require(`fs`).promises;
 
-// TODO: Create an array of questions for user input
 const questions = [
     {type:`input`,
     name:`projectTitle`,
@@ -29,9 +27,10 @@ const questions = [
     name:`tests`,
     message:`Please write instructions on how to test the application.`
 },
-    {type:`checkbox`,
+    {type:`list`,
     name:`license`,
-    choices:[`MIT`, `None`]
+    message: `What license do you have?`,
+    choices:[`MIT`,`Apache`,`Mozilla`, `None`]
 },
     {type:`input`,
     name:`userName`,
@@ -44,67 +43,15 @@ const questions = [
 
 const promptUser = ()=> inquirer.prompt(questions);
 
+function writeToFile(data) {
+    writeFile(`README.md`, generateMarkdown(data))
+};
 
-const generateREADME = ({projectTitle, description, installation, usage, contribution, tests, license, userName, email}) => 
-
-    `# ${projectTitle}
-
-    ## Description
-    
-    ${description}
-    
-    ## Table of Contents 
-    
-    - [Usage](#Usage)
-    - [Credits](#Credits)
-    - [License](#License)
-    - [How to Contribute](#How-to-Contribute)
-    - [Tests](#Tests)
-    - [Questions](#Questions)
-    
-    ## Installation
-    
-    ${installation}
-    
-    ## Usage
-    
-    ${usage}
-    
-    ## Credits
-    
-    
-    
-    ## License
-    
-    ${license}
-    
-
-    ## How to Contribute
-    
-    ${contribution}
-    
-    ## Tests
-    
-    ${tests}
-    
-    ## Questions
-
-    If you have any further questions, concerns, or feedback feel free to email me at ${email}.  Another way you can contact me is through my [GitHub](${userName}) link. 
-    `
-;
-
-// TODO: Create a function to write README file
-function writeToFile(fileName, data) {};
-
-// TODO: Create a function to initialize app
 function init() {
     promptUser()
-    .then((data) => {
-        writeFile(`README.md`, generateREADME(data))
-    })
+    .then((data) => writeToFile(data))
     .then(() => console.log(`Successfully created README file.`))
     .catch((err) => console.error(err));
 };
 
-// Function call to initialize app
 init();
