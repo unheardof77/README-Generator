@@ -3,7 +3,7 @@ const generateMarkdown = require(`./utils/generateMarkdown.js`);
 //this require gets the inquirer module allowing inquirer methods to be used.
 const inquirer = require(`inquirer`);
 //this require specifically grabs writeFile form the fs module
-const { writeFile } = require(`fs`).promises;
+const fs = require(`fs`);
 //This is an array of questions that the user is prompted when they boot the application
 const questions = [
     {type:`input`,
@@ -58,9 +58,9 @@ function init() {
         }
         if(collabQuestionsArray){
             inquirer.prompt(collabQuestionsArray)
-            .then((secondData) => writeFile(`README.md`, generateMarkdown(data, secondData)))
+            .then((secondData) => fs.writeFile(`README.md`, generateMarkdown(data, secondData), (err) => err ? console.log(err) : console.log(`README successfully generated!`)))
         }else{
-            writeFile(`README.md`, generateMarkdown(data));
+            fs.writeFile(`README.md`, generateMarkdown(data), (err) => err? console.log(err) : console.log(`README successfully generated!`));
         };
     })
     .catch((err) => console.error(err));
