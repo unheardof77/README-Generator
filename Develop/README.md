@@ -1,9 +1,8 @@
-
-# alskdjf [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
+# lskdfj [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 
 ## Description
 
-aslkdfj
+slkdfj
 
 ## Table of Contents 
 
@@ -16,7 +15,7 @@ aslkdfj
 
 ## Installation
 
-asldkfj
+slkdjf
 
 ## Usage
 
@@ -24,7 +23,8 @@ slkdjf
 
 ## Credits
 
-There were no collaborators.
+[lskdfj](https://github.com/lskdfj)  
+
 
 ## License
 
@@ -32,7 +32,7 @@ This application uses the MIT license.
 
 ## How to Contribute
 
-sldkfj
+slkdfj
 
 ## Tests
 
@@ -40,4 +40,4 @@ lskdjf
 
 ## Questions
 
-If you have any further questions, concerns, or feedback feel free to email me at sldkfj.  Another way you can contact me is through my [GitHub](https://github.com/slakdjf) account. 
+If you have any further questions, concerns, or feedback feel free to email me at lsdkfj.  Another way you can contact me is through my [GitHub](https://github.com/lksdjf) account. 
