@@ -11,15 +11,25 @@ const whatLicenseImg = (license) =>{
   };
 };
 
-const whatLicense = (license) => {
-  if(license === `None`){
-    return `no`;
-  } else {
-    return `the ${license}`;
+const whatLicense = (license) => license === `None`? `no` : `the ${license}`;
+
+const createColab = (secondData) => {
+  console.log(secondData);
+  if(Object.keys(secondData).length === 0){
+    console.log("If triggered.");
+    return `There were no collaborators.`;
+  }else {
+    console.log("Else triggered");
+    let links = ``;
+    for(const prop in secondData ){
+      links = links.concat(`[${secondData[prop]}](https://github.com/${secondData[prop]})  
+`);
+    }
+    return links
   }
 };
 
-const generateMarkdown = ({projectTitle, description, installation, usage, license, contribution, tests, email, userName}) => 
+const generateMarkdown = ({projectTitle, description, installation, usage, license, contribution, tests, email, userName}, secondData) => 
 `
 # ${projectTitle} ${whatLicenseImg(license)}
 
@@ -46,7 +56,7 @@ ${usage}
 
 ## Credits
 
-
+${createColab(secondData)}
 
 ## License
 

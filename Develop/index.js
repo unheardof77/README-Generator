@@ -39,18 +39,27 @@ const questions = [
     {type:`input`,
     name:`email`,
     message:`What is your email?`
+},
+    {type:`input`,
+    name:`collaborators`,
+    message:`How many collaborators do you have?`
 }];
 
-const promptUser = ()=> inquirer.prompt(questions);
-
-function writeToFile(data) {
-    writeFile(`README.md`, generateMarkdown(data))
-};
-
 function init() {
-    promptUser()
-    .then((data) => writeToFile(data))
-    .then(() => console.log(`Successfully created README file.`))
+    inquirer.prompt(questions)
+    .then((data) => {
+        let collabQuestionsArray = [];
+        for(i=0; i < data.collaborators; i++){
+            let collabQuestionsObject = {name: `collaborators${[i]}`, message: `What is the Github username of collaborator${i}?`};
+            collabQuestionsArray.push(collabQuestionsObject);
+        }
+        if(collabQuestionsArray){
+            inquirer.prompt(collabQuestionsArray)
+            .then((secondData) => writeFile(`README.md`, generateMarkdown(data, secondData)))
+        }else{
+            writeFile(`README.md`, generateMarkdown(data));
+        };
+    })
     .catch((err) => console.error(err));
 };
 
